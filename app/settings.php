@@ -3,7 +3,7 @@ return [
     'settings' => [
         // Slim Settings
         'determineRouteBeforeAppMiddleware' => false,
-        'displayErrorDetails' => false,
+        'displayErrorDetails' => (bool)getenv('DISPLAY_ERRORS'),
 
         // View settings
         'view' => [
@@ -17,8 +17,9 @@ return [
 
         // monolog settings
         'logger' => [
-            'name' => 'app',
-            'path' => __DIR__ . '/../log/app.log',
+            'name' => 'my-crm',
+            'level' => (int)getenv('LOG_LEVEL') ?: 400,
+            'path' => getenv('BASE_DIR') . '/log/app.log',
         ],
     ],
 ];
